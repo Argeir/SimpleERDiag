@@ -1,4 +1,4 @@
-SimpleER
+SimpleERDiag
 ========
 The goal of this project is to provide simple ER diagram editor, which uses Crow's Foot notation.
 
