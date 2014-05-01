@@ -1,4 +1,8 @@
-SimpleERDiag
-============
+SimpleER
+========
+The goal of this project is to provide simple ER diagram editor, which uses Crow's Foot notation.
 
-ER diagram editor in HTML5, which uses Crow's foot notation
+All the images are produced by myself, unless stated otherwise (which explains their poor quality, as I'm not an artist).
+Good news is that these can be easily replaced later, should there be need.
+
+hand_pic.png based on 'Hands Cursors' set by Claudio Guglieri (http://dribbble.com/shots/819703-Hands-Cursors)
