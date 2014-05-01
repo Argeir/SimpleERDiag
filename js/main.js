@@ -5,11 +5,14 @@ var moveFromPoint = null;
 
 const CANV_WIDTH = canvMain.width;
 const CANV_HEIGHT = canvMain.height;
+const VERSION = 0.3;
 
 document.addEventListener('keydown', handleKeyDown, true);
 canvMain.addEventListener('mousedown', handleMouseDown, false);
 canvMain.addEventListener('mouseup', function(){ isMouseDown = false; }, false);
 canvMain.addEventListener('mousemove', handleMouseMove, false);
+
+$("#version-info > span").text("SimpleERDiag v"+VERSION);
 
 function handleMouseDown(ev){
 	isMouseDown = true;
