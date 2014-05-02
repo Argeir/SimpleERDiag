@@ -6,6 +6,7 @@ const ENTITY_BORDER_COLOR = "rgb(10,10,10)";
 const ENTITY_SELECTED_BORDER_COLOR = "rgb(61,145,64)";
 const CAPTION_FONT = "14px Arial";
 const CAPTION_FONT_COLOUR = "rgb(20,20,20)";
+const CAPTION_MIN_OFFSET = 2;
 const CARENT_COLOUR = "rgb(50,50,50)";
 const CARET_HEIGHT = ENTITY_DEFAULT_HEIGHT/7+4;
 const CARET_WIDTH = 3;
@@ -20,7 +21,7 @@ var Entity = function(x,y,width,height,index){
 	this.width = width;
 	this.height = height;
 	this.index = index; //items with greater index should be drawn on top; it's equivalent of z-index
-	this.caption = "title";
+	this.caption = "Entity";
 	this.isSelected = false;
 	this.isCaptionBeingEdited = false;
 	
@@ -50,9 +51,10 @@ var Entity = function(x,y,width,height,index){
 		
 		ctx.font = CAPTION_FONT;
 		
-		ctx.fillStyle = ENTITY_BORDER_COLOR;
+		ctx.fillStyle = CAPTION_FONT_COLOUR;
 		var textMetrics = ctx.measureText(this.caption);
-		var textX = this.x+ENTITY_DEFAULT_WIDTH/3;
+		var textX = (textMetrics.width >= ENTITY_DEFAULT_WIDTH) ? this.x+CAPTION_MIN_OFFSET :
+			this.x+((ENTITY_DEFAULT_WIDTH - textMetrics.width)/2);
 		
 		ctx.textBaseline="top"; 
 		ctx.fillText(this.caption, parseInt(textX), parseInt(this.y+ENTITY_DEFAULT_HEIGHT/4));
