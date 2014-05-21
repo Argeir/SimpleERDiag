@@ -22,7 +22,7 @@ function handleMouseDown(ev){
        y : ev.pageY - canvMain.offsetTop
 	};
 	
-	var activeItem = $("#main-controls-holder li.selected").attr('data-item');
+	var activeItem = lowerMenuManager.getSelectedItem();
 	//console.log(activeItem);
 	//console.info(pos);
 	if(activeItem === JSEnums.MenuItemSelected.ItemEntity){		
@@ -38,7 +38,7 @@ function handleMouseDown(ev){
 }
 
 function handleMouseMove(ev){
-	if(!isMouseDown || $("#main-controls-holder li.selected").attr('data-item') != 
+	if(!isMouseDown || lowerMenuManager.getSelectedItem() != 
 			JSEnums.MenuItemSelected.ItemHand)
 		return;
 	
