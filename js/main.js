@@ -38,7 +38,8 @@ function handleMouseDown(ev){
 }
 
 function handleMouseMove(ev){
-	if(!isMouseDown)
+	if(!isMouseDown || $("#main-controls-holder li.selected").attr('data-item') != 
+			JSEnums.MenuItemSelected.ItemHand)
 		return;
 	
 	var pos = {
