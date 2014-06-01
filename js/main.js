@@ -5,7 +5,7 @@ var moveFromPoint = null;
 
 const CANV_WIDTH = canvMain.width;
 const CANV_HEIGHT = canvMain.height;
-const VERSION = 0.3;
+const VERSION = 0.4;
 
 document.addEventListener('keydown', handleKeyDown, true);
 canvMain.addEventListener('mousedown', handleMouseDown, false);
@@ -95,8 +95,8 @@ var entityManager = (function(ctx){
 	
 	function drawAllEntities(){
 		ctx.clearRect(0, 0, CANV_WIDTH, CANV_HEIGHT);
-		//console.info(entityCollection);
 		entityCollection.map(function(item){ item.draw(ctx); });
+		relationshipManager.drawAllRelationships();
 	}
 	
 	return{
@@ -123,8 +123,7 @@ var entityManager = (function(ctx){
 			}
 			
 			drawAllEntities();
-		},
-		
+		},		
 		moveEntity: function(moveToX, moveToY){
 			if(selectedEntity === null)
 				return;
@@ -139,14 +138,28 @@ var entityManager = (function(ctx){
 			
 			drawAllEntities();
 			moveFromPoint = { x: moveToX, y: moveToY };
-		},
-		
+		},		
 		getSelectedEntity: function(){
 			return selectedEntity;
 		},
-		
+		getEntity: function(index){
+			return entityCollection[index];
+		},
 		redraw: function(){
 			drawAllEntities();
+		}
+	};
+})(ctxMain);
+
+var relationshipManager = (function(ctx){
+	const relationshipCollection = [];
+	
+	return{
+		addRelationship: function(entityFrom, entityTo, relFrom, relTo, locFrom, locTo){
+			relationshipCollection.push(new Relationship(entityFrom, entityTo, relFrom, relTo, locFrom, locTo));
+		},
+		drawAllRelationships: function(){
+			relationshipCollection.map(function(item){ item.draw(ctx) });
 		}
 	};
 })(ctxMain);
